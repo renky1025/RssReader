@@ -1,0 +1,11 @@
+.vscode
+.vscode/*
+data
+data/*
+*.sh
+deploy
+deploy/*
+ui/dist
+ui/dist/*
+ui/node_modules
+ui/node_modules/*

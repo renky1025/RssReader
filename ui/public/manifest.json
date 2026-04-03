@@ -1,0 +1,28 @@
+{
+  "name": "Fread - RSS阅读器",
+  "short_name": "Fread",
+  "description": "现代化自托管RSS阅读器，使用Go+React+SQLite构建",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#1a1a2e",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "news", "utilities"],
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "16x16 32x32 192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

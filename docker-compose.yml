@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATABASE_PATH=/app/data/rssreader.db
+      - JWT_SECRET=${JWT_SECRET:-change-me-in-production}
+      - FETCH_INTERVAL=15
+      - FETCH_CONCURRENCY=5
+    restart: unless-stopped

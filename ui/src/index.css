@@ -1,0 +1,899 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light theme (default) - 基于截图优化 */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f7f9fc;
+  --bg-tertiary: #eef2f7;
+  --bg-hover: #e8f2ff;
+  --accent: #f7931e;
+  --accent-hover: #d67e1a;
+  --text-primary: #1a1a1a;
+  --text-secondary: #2d3748;
+  --text-muted: #718096;
+  --text-link: #2563eb;
+  --text-link-hover: #1d4ed8;
+  --border-color: #e2e8f0;
+  --shadow-light: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark theme - 精确匹配参考截图 */
+.dark {
+  --bg-primary: #1e2227;
+  --bg-secondary: #1a1d21;
+  --bg-tertiary: #252a31;
+  --bg-hover: #2d333b;
+  --accent: #f7931e;
+  --accent-hover: #ffa333;
+  --text-primary: #c9ccd1;
+  --text-secondary: #c9ccd1;
+  --text-muted: #8b949e;
+  --text-link: #f7931e;
+  --text-link-hover: #ffa333;
+  --border-color: #30363d;
+  --shadow-light: rgba(0, 0, 0, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Article content styles */
+.article-content {
+  line-height: 1.75;
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.article-content h1 {
+  font-size: 1.75rem;
+  margin-top: 0;
+}
+
+.article-content h2 {
+  font-size: 1.5rem;
+}
+
+.article-content h3 {
+  font-size: 1.25rem;
+}
+
+.article-content p {
+  margin-bottom: 1.5em;
+  line-height: 1.8;
+}
+
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 2em 0;
+  box-shadow: 0 4px 12px var(--shadow-light);
+  display: block;
+}
+
+/* Prevent duplicate images in content */
+.article-content img[src*="proxy"] {
+  display: none;
+}
+
+.article-content img:first-of-type {
+  display: none; /* Hide first image if it's the featured image */
+}
+
+.article-content a {
+  color: var(--text-link);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.article-content a:hover {
+  color: var(--text-link-hover);
+  border-bottom-color: var(--text-link-hover);
+}
+
+.article-content pre {
+  background: #1f2937;
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.article-content code {
+  background: #374151;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.article-content blockquote {
+  border-left: 4px solid #e94560;
+  padding-left: 1em;
+  margin: 1em 0;
+  color: #9ca3af;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1.5em 0;
+  padding-left: 2em;
+}
+
+.article-content li {
+  margin-bottom: 0.75em;
+  line-height: 1.7;
+}
+
+.article-content li p {
+  margin-bottom: 0.5em;
+}
+
+/* 优化引用样式 */
+.article-content blockquote {
+  border-left: 4px solid var(--accent);
+  padding: 1.5em 1.5em 1.5em 2em;
+  margin: 2em 0;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* 优化表格样式 */
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.article-content th,
+.article-content td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.article-content th {
+  background: var(--bg-secondary);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.article-content tr:hover {
+  background: var(--bg-hover);
+}
+
+/* Toast animation */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  /* Better touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Smooth scrolling */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent text selection on touch */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Article content mobile adjustments */
+  .article-content {
+    font-size: 1.05rem;
+    line-height: 1.9;
+  }
+  
+  .article-content img {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    max-width: calc(100% + 2rem);
+    border-radius: 0;
+  }
+  
+  /* Hide scrollbar on mobile for cleaner look */
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+  .safe-area-inset-top {
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+  .safe-area-inset-bottom {
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+}
+/* 文章内容优化 - 基于截图样式 */
+.article-content {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* 避免图片重复显示 */
+.article-content img[src*="image_url"] {
+  display: none !important;
+}
+
+/* 如果文章开头有相同的图片，隐藏它 */
+.article-content > p:first-child img,
+.article-content > div:first-child img {
+  display: none;
+}
+
+/* 优化段落间距 */
+.article-content > * + * {
+  margin-top: 1.5em;
+}
+
+.article-content > h1 + *,
+.article-content > h2 + *,
+.article-content > h3 + * {
+  margin-top: 0.75em;
+}
+
+/* 优化代码块样式 */
+.article-content pre {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  padding: 1.5em;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 2em 0;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.article-content code {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 0.25em 0.5em;
+  border-radius: 6px;
+  font-size: 0.9em;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+.article-content pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* 优化强调文本 */
+.article-content strong,
+.article-content b {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* 暗色主题下的强调文本 */
+.dark .article-content strong,
+.dark .article-content b {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.article-content em,
+.article-content i {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* 优化分隔线 */
+.article-content hr {
+  border: none;
+  height: 1px;
+  background: var(--border-color);
+  margin: 3em 0;
+}
+
+/* 响应式图片优化 */
+@media (max-width: 768px) {
+  .article-content img {
+    border-radius: 8px;
+    margin: 1.5em -1rem;
+    max-width: calc(100% + 2rem);
+  }
+}
+/* 全局样式优化 - 匹配截图外观 */
+
+/* 滚动条样式优化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* 选择文本颜色 */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* 焦点样式 */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 改善按钮交互 */
+button {
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* 文章阅读器特定样式 */
+.article-reader {
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* 改善中文字体渲染 */
+.article-content {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 链接悬停效果 */
+.article-content a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.article-content a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--text-link);
+  transition: width 0.3s ease;
+}
+
+.article-content a:hover::after {
+  width: 100%;
+}
+
+/* 图片加载动画 */
+.article-content img {
+  transition: opacity 0.3s ease;
+}
+
+.article-content img[loading="lazy"] {
+  opacity: 0;
+}
+
+.article-content img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* 暗色主题下的文章正文颜色 */
+.dark .article-content {
+  color: #c9ccd1 !important;
+}
+
+.dark .article-content p,
+.dark .article-content li,
+.dark .article-content span,
+.dark .article-content div {
+  color: #c9ccd1 !important;
+}
+
+/* 暗色主题下的标题 - 更亮的白色 */
+.dark .article-content h1,
+.dark .article-content h2,
+.dark .article-content h3,
+.dark .article-content h4,
+.dark .article-content h5,
+.dark .article-content h6 {
+  color: #ffffff !important;
+}
+
+/* 暗色主题下的超链接 - 橙色 */
+.dark .article-content a {
+  color: #f7931e !important;
+  text-decoration: none;
+}
+
+.dark .article-content a:hover {
+  color: #ffa333 !important;
+  text-decoration: underline;
+}
+
+/* 暗色主题下文章标题 */
+.dark h1.text-3xl,
+.dark .article-title {
+  color: #ffffff !important;
+}
+
+/* 暗色主题下的代码高亮优化 */
+.dark .article-content pre {
+  background: #1a1b26;
+  border-color: #2a2b36;
+}
+
+.dark .article-content code {
+  background: #2a2b36;
+  color: #c0caf5;
+}
+
+/* 表格在暗色主题下的优化 */
+.dark .article-content table {
+  background: var(--bg-secondary);
+}
+
+.dark .article-content th {
+  background: var(--bg-tertiary);
+}
+
+.dark .article-content tr:hover {
+  background: var(--bg-hover);
+}
+/* 亮色主题特定优化 */
+:root {
+  /* 改善亮色主题下的文字对比度 */
+  --text-primary: #111827;
+  --text-secondary: #374151;
+}
+
+/* 亮色主题下的特殊样式 */
+:not(.dark) .article-content {
+  color: var(--text-secondary);
+}
+
+:not(.dark) .article-content h1,
+:not(.dark) .article-content h2,
+:not(.dark) .article-content h3 {
+  color: var(--text-primary);
+}
+
+/* 亮色主题下的代码块 */
+:not(.dark) .article-content pre {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #1f2937;
+}
+
+:not(.dark) .article-content code {
+  background: #f1f5f9;
+  color: #1f2937;
+}
+
+/* 亮色主题下的引用 */
+:not(.dark) .article-content blockquote {
+  background: #f8fafc;
+  color: var(--text-secondary);
+  border-left-color: var(--accent);
+}
+
+/* 改善亮色主题下的搜索框 */
+:not(.dark) input[type="text"],
+:not(.dark) input[type="url"] {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: var(--text-primary);
+}
+
+:not(.dark) input[type="text"]:focus,
+:not(.dark) input[type="url"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(247, 147, 30, 0.1);
+}
+
+/* 改善亮色主题下的按钮悬停 */
+:not(.dark) button:hover {
+  background-color: var(--bg-hover);
+}
+
+/* 亮色主题下的边框颜色 */
+:not(.dark) .border-b,
+:not(.dark) .border-t,
+:not(.dark) .border-l {
+  border-color: #e5e7eb;
+}
+/* 修复 bg-gray-600 的文字颜色问题 */
+.bg-gray-600 {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+/* 确保hover和active状态下文字可见 */
+.bg-gray-600:hover {
+  background-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+.bg-gray-600:active {
+  background-color: #1f2937 !important;
+  color: #ffffff !important;
+}
+
+/* 确保所有使用 bg-gray-600 的元素都有白色文字 */
+.bg-gray-600,
+.bg-gray-600 span,
+.bg-gray-600 div,
+.bg-gray-600 p {
+  color: #ffffff !important;
+}
+
+/* 亮色主题下的特殊处理 */
+:not(.dark) .bg-gray-600 {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+
+/* 暗色主题下的特殊处理 */
+.dark .bg-gray-600 {
+  background-color: #4b5563 !important;
+  color: #ffffff !important;
+}
+/* 修复active状态下的文字可见性问题 */
+.bg-\[var\(--accent\)\] {
+  color: white !important;
+}
+
+.bg-\[var\(--accent\)\]:hover {
+  color: white !important;
+}
+
+/* 确保橙色背景下文字始终可见 */
+[style*="background-color: #f7931e"],
+[style*="background: #f7931e"] {
+  color: white !important;
+}
+
+/* 针对亮色主题的特殊处理 */
+:not(.dark) .bg-\[var\(--accent\)\] {
+  background-color: #f7931e !important;
+  color: white !important;
+}
+
+:not(.dark) .bg-\[var\(--accent\)\]:hover {
+  background-color: #e6851a !important;
+  color: white !important;
+}
+
+/* 暗色主题下的处理 */
+.dark .bg-\[var\(--accent\)\] {
+  background-color: #f7931e !important;
+  color: white !important;
+}
+
+.dark .bg-\[var\(--accent\)\]:hover {
+  background-color: #ff9f3a !important;
+  color: white !important;
+}
+/* 强制修复侧边栏active状态的可见性 */
+button[class*="bg-[var(--accent)]"] {
+  background-color: #d67e1a !important;
+  color: white !important;
+}
+
+button[class*="bg-[var(--accent))"]:hover {
+  background-color: #b8691a !important;
+  color: white !important;
+}
+
+/* 针对NavItem的特殊处理 */
+.sidebar-nav-item-active {
+  background-color: #d67e1a !important;
+  color: white !important;
+}
+
+.sidebar-nav-item-active:hover {
+  background-color: #b8691a !important;
+  color: white !important;
+}
+
+.sidebar-nav-item-active * {
+  color: white !important;
+}
+/* 拖拽样式 */
+.drag-over {
+  background-color: rgba(59, 130, 246, 0.1);
+  border: 2px dashed #3b82f6;
+}
+
+.dragging {
+  opacity: 0.5;
+  transform: rotate(2deg);
+}
+
+/* 拖拽时的光标 */
+[draggable="true"] {
+  cursor: grab;
+}
+
+[draggable="true"]:active {
+  cursor: grabbing;
+}
+
+/* 拖拽放置区域的视觉反馈 */
+.drop-zone {
+  transition: all 0.2s ease;
+}
+
+.drop-zone.drag-over {
+  background-color: var(--bg-hover);
+  border: 2px dashed var(--accent);
+  border-radius: 8px;
+}
+
+/* 暗色主题下的拖拽样式 */
+.dark .drop-zone.drag-over {
+  background-color: rgba(247, 147, 30, 0.1);
+  border-color: var(--accent);
+}
+
+/* 亮色主题下的拖拽样式 */
+:not(.dark) .drop-zone.drag-over {
+  background-color: rgba(247, 147, 30, 0.05);
+  border-color: var(--accent);
+}
+
+/* ========== 暗色主题专用样式 ========== */
+
+/* 暗色主题下的侧边栏 */
+.dark .sidebar-nav-item-active {
+  background-color: #f7931e !important;
+  color: white !important;
+}
+
+/* 暗色主题下的文章列表项 */
+.dark .article-list-item {
+  border-color: var(--border-color);
+}
+
+.dark .article-list-item:hover {
+  background-color: var(--bg-hover);
+}
+
+/* 暗色主题下的搜索框 */
+.dark input[type="text"],
+.dark input[type="url"],
+.dark input[type="search"] {
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark input[type="text"]::placeholder,
+.dark input[type="url"]::placeholder,
+.dark input[type="search"]::placeholder {
+  color: var(--text-muted);
+}
+
+/* 暗色主题下的按钮 */
+.dark button {
+  color: var(--text-secondary);
+}
+
+.dark button:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的边框 */
+.dark .border-b,
+.dark .border-t,
+.dark .border-l,
+.dark .border-r {
+  border-color: var(--border-color) !important;
+}
+
+/* 暗色主题下的文章阅读区域 */
+.dark .article-reader-content {
+  background-color: var(--bg-primary);
+}
+
+/* 暗色主题下的标题颜色 */
+.dark h1, .dark h2, .dark h3 {
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的文章列表选中状态 */
+.dark .article-item-selected {
+  background-color: var(--bg-hover);
+  border-left: 4px solid var(--accent);
+}
+
+/* 暗色主题下的图标颜色 */
+.dark svg {
+  color: var(--text-secondary);
+}
+
+.dark button:hover svg {
+  color: var(--text-primary);
+}
+
+/* 暗色主题下的分隔线 */
+.dark hr,
+.dark .divider {
+  border-color: var(--border-color);
+  background-color: var(--border-color);
+}
+
+/* 暗色主题下的卡片阴影 */
+.dark .card,
+.dark .modal {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 暗色主题下的滚动条 */
+.dark ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ========== 暗色主题三栏布局背景色 ========== */
+
+/* 侧边栏 - 最深的背景 */
+.dark .sidebar,
+.dark [class*="bg-[var(--bg-secondary)]"] {
+  background-color: #1a1d21 !important;
+}
+
+/* 文章列表 - 中等深度背景 */
+.dark .article-list,
+.dark [class*="bg-[var(--bg-tertiary)]"] {
+  background-color: #252a31 !important;
+}
+
+/* 文章阅读区 - 稍浅的背景 */
+.dark .article-reader,
+.dark [class*="bg-[var(--bg-primary)]"] {
+  background-color: #1e2227 !important;
+}
+
+/* 暗色主题下的hover状态 */
+.dark [class*="hover:bg-[var(--bg-hover)]"]:hover {
+  background-color: #2d333b !important;
+}
+
+/* 暗色主题下的选中状态 */
+.dark .sidebar-nav-item-active {
+  background-color: #f7931e !important;
+  color: #ffffff !important;
+}
+
+/* 暗色主题下的边框更暗 */
+.dark [class*="border-[var(--border-color)]"] {
+  border-color: #30363d !important;
+}
+
+/* 暗色主题下的文字颜色 */
+.dark .text-primary,
+.dark [class*="text-[var(--text-primary)]"] {
+  color: #c9ccd1 !important;
+}
+
+.dark .text-secondary,
+.dark [class*="text-[var(--text-secondary)]"] {
+  color: #c9ccd1 !important;
+}
+
+.dark .text-muted,
+.dark [class*="text-[var(--text-muted)]"] {
+  color: #8b949e !important;
+}

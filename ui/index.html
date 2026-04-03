@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- Favicon 配置 -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- 多种尺寸图标支持 -->
+    <link rel="icon" sizes="16x16" href="/favicon.svg">
+    <link rel="icon" sizes="32x32" href="/favicon.svg">
+    <link rel="icon" sizes="192x192" href="/favicon.svg">
+    <link rel="icon" sizes="512x512" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#1a1a2e" />
+
+    <!-- SEO基础标签 -->
+    <title>Fread - 现代化自托管RSS阅读器 | Go + React + SQLite</title>
+    <meta name="description" content="Fread是一个现代化的自托管RSS阅读器，使用Go+React+SQLite构建。支持RSS/Atom订阅、智能阅读、文件夹管理、多用户系统。完全掌控数据，隐私保护。">
+    <meta name="keywords" content="RSS阅读器,RSS订阅器,自托管RSS,Go后端,React前端,SQLite数据库,RSS管理,订阅源管理,离线阅读">
+    <meta name="author" content="Fread Team">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="canonical" href="https://fread.ftmi.info/" />
+
+    <!-- Open Graph 标签 (Facebook, LinkedIn等) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Fread - 现代化自托管RSS阅读器">
+    <meta property="og:description" content="一个现代化的自托管RSS阅读器，采用Go+React+SQLite构建。支持多用户、文件夹管理、智能阅读体验。">
+    <meta property="og:image" content="https://fread.ftmi.info/og-image.png">
+    <meta property="og:url" content="https://fread.ftmi.info/">
+    <meta property="og:site_name" content="Fread RSS Reader">
+    <meta property="og:locale" content="zh_CN">
+
+    <!-- Twitter Card 标签 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fread - 现代化自托管RSS阅读器">
+    <meta name="twitter:description" content="一个现代化的自托管RSS阅读器，采用Go+React+SQLite构建。支持多用户、文件夹管理、智能阅读体验。">
+    <meta name="twitter:image" content="https://fread.ftmi.info/twitter-image.png">
+
+    <!-- 结构化数据 (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Fread",
+      "description": "现代化自托管RSS阅读器，使用Go+React+SQLite构建",
+      "url": "https://fread.ftmi.info/",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Fread Team"
+      },
+      "featureList": [
+        "RSS/Atom订阅管理",
+        "智能阅读体验",
+        "文件夹组织",
+        "多用户支持",
+        "自托管部署",
+        "移动端适配"
+      ],
+      "screenshot": "https://fread.ftmi.info/screenshot.png"
+    }
+    </script>
+
+    <!-- 性能优化 -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+          <!-- Google Analytics 代码 -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-7N0J9CLCKV"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7N0J9CLCKV');
+          </script>
+      
+          <!-- Google AdSense 代码 -->
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7493748311001547"></script>
+    
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
